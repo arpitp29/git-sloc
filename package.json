@@ -1,0 +1,82 @@
+{
+  "name": "git-sloc",
+  "displayName": "Git SLOC",
+  "description": "This Extension calculates the sloc of all the git repositories at any level from base dir",
+  "publisher": "Arpit Padwekar",
+  "version": "0.0.1",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arpitp29/git-sloc.git"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-sloc.activate",
+        "title": "Activate git-sloc"
+      },
+      {
+        "command": "git-sloc.showFullSloc",
+        "title": "Generate Full SLOC"
+      }
+    ],
+    "configuration": {
+      "title": "Git-SLOC",
+      "properties": {
+        "gitSloc.rootDirectory": {
+          "type": "string",
+          "default": "/home/sample_dir1/,/home/sample_dir2/",
+          "description": "Comma separated root directory to search git repositories recursively"
+        },
+        "gitSloc.userName": {
+          "type": "string",
+          "default": "gituser",
+          "description": "git username"
+        },
+        "gitSloc.fileExtensions": {
+          "type": "string",
+          "default": ".py,.ipynb",
+          "description": "Comma separated file extensions to search for sloc"
+        },
+        "gitSloc.periodInDays": {
+          "type": "number",
+          "default": 30,
+          "description": "Period in days."
+        },
+        "gitSloc.branches": {
+          "type": "string",
+          "default": "main,master",
+          "description": "Comma seperated branches.It falls back to current branch if none of the branches are available on machine."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.70.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "@vscode/test-electron": "^2.3.4"
+  }
+}
